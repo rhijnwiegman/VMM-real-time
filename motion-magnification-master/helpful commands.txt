@@ -1,0 +1,32 @@
+xhost +
+
+sudo docker run -it --rm --runtime nvidia --network=host --device /dev/video0:/dev/video0 -e DISPLAY:$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v /home/rhijn:/home/rhijn vmm-learning-based-notebook
+
+export DISPLAY=:1
+
+jupyter notebook --allow-root --ip 0.0.0.0 --port 8888
+
+nohup jupyter notebook --allow-root --ip 0.0.0.0 --port 8888 &
+nano nohup.out
+
+# install gstreamer and jetson utils
+sudo apt-get update;
+sudo apt-get -y install gstreamer1.0-tools gstreamer1.0-alsa \
+     gstreamer1.0-plugins-base gstreamer1.0-plugins-good \
+     gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly \
+     gstreamer1.0-libav
+sudo apt-get -y install libgstreamer1.0-dev \
+     libgstreamer-plugins-base1.0-dev \
+     libgstreamer-plugins-good1.0-dev \
+     libgstreamer-plugins-bad1.0-dev
+bash /home/rhijn/jetson-inference/CMakePreBuild.sh
+cd /home
+git clone https://github.com/dusty-nv/jetson-utils
+cd jetson-utils
+mkdir build
+cd build
+cmake ../
+make -j$(nproc)
+sudo make install
+sudo ldconfig
+
