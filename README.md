@@ -5,4 +5,4 @@ This project is aimed at optimizing the learning-based video motion magnificatio
 ## Demo
 [![Watch the video](https://img.youtube.com/vi/Vuabf5AByak/maxresdefault.jpg)](https://youtu.be/Vuabf5AByak)
 
-The Torch-TensorRT optimized model can be found in the motion-magnification-master directory. This is a modified version of the repository of [cgst](https://github.com/cgst/motion-magnification).
+The Torch-TensorRT optimized model can be found in the [motion-magnification-master](motion-magnification-master) directory. This is a modified version of the repository of [cgst](https://github.com/cgst/motion-magnification).
